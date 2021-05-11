@@ -1,6 +1,5 @@
 # AspectJ
 
-
 ## Building
 
 AspectJ has a multi module maven build. Although various modules produce intermediate results, the key artifacts at the end of the build are:
@@ -55,3 +54,9 @@ Once you have imported all the projects using `m2e`, close the `org.eclipse.jdt.
 ## Setting version for release:
 
 mvn versions:set -DgroupId=org.aspectj -DartifactId=* -DoldVersion=1.9.3.BUILD-SNAPSHOT -DnewVersion=1.9.3
+
+# SLEE Change History
+
+## 1.9.6.SLEE.1
+
+* Advice/shadow name prefixed with underscore to avoid SLEE naming conflict 
