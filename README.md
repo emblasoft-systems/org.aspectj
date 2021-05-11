@@ -13,9 +13,39 @@ These are the artifacts published to maven central for each release. In addition
 
 In the root of a cloned AspectJ simply run:
 
+(Maven must have access to the `maven.pkg.github.com`, see here)
+
 `./mvnw clean install`
 
 This will build all the modules, run all the tests and install the key artifacts in your local repository.
+
+## Access to `maven.pkg.github.com`
+
+To build maven must have access to the artifacts deployed on `maven.pkg.github.com`. Commonly this is enabled this way:
+
+1. Create a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with access `read:packages`. 
+2. Define the repository in `settings.xml` (see below)
+
+### Define the repository in `settings.xml`
+
+````xml
+<server>
+  <id>github</id>
+  <username>YOUR_USER_NAME</username>
+  <password>YOUR_ACCESS_TOKEN</password>
+</server>
+
+<repository>
+  <id>github</id>
+  <url>https://maven.pkg.github.com/kriegaex/*</url>
+  <snapshots>
+    <enabled>true</enabled>
+  </snapshots>
+  <releases>
+    <enabled>true</enabled>
+  </releases>
+</repository>
+````
 
 ## Running the tests in eclipse
 
