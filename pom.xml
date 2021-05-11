@@ -127,7 +127,7 @@
 			</plugin>
 
 		</plugins>
-
+                
 	</build>
 
 	<dependencies>
@@ -138,5 +138,12 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+        
+        <distributionManagement>
+                <repository>
+                        <id>emblasoft.deployment</id>
+                        <url>https://maven.emblasoft.com/nexus/content/repositories/releases/</url>
+                </repository>
+        </distributionManagement>
 
 </project>
