@@ -13,7 +13,7 @@ These are the artifacts published to maven central for each release. In addition
 
 In the root of a cloned AspectJ simply run:
 
-(Maven must have access to the `maven.pkg.github.com`, see here)
+(Maven must have access to the `maven.pkg.github.com`, see below)
 
 `./mvnw clean install`
 
