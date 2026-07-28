@@ -392,7 +392,7 @@ public class CompilerRun implements IAjcRun {
                                 // continue recursion
                                 return true;
                             }
-                            String path = file.getPath();
+                            String path = file.getName();
                             // only source files are relevant to staging
                             if (!FileUtil.hasSourceSuffix(path)) {
                                 return false;

@@ -118,13 +118,13 @@ public class Bugs199Tests extends XMLBasedAjcTestCase {
       return;
     }
     
-    // Check if we're on Temurin JDK 25 where ECJ rejects internal JDK modules
+    // Check if we're on Temurin JDK 25+ where ECJ rejects internal JDK modules
     // Even though the module exists, ECJ will reject it with "invalid module name: jdk.charsets"
     // This is a known ECJ limitation documented in the test XML comment.
     String vendor = System.getProperty("java.vm.vendor", "");
-    String version = System.getProperty("java.version", "");
-    if ((vendor.contains("Eclipse Adoptium") || vendor.contains("Temurin")) && version.startsWith("25")) {
-      System.out.println("Skipping testAddModulesJDK_gh145: ECJ on " + vendor + " " + version + 
+    int featureVersion = Runtime.version().feature();
+    if ((vendor.contains("Eclipse Adoptium") || vendor.contains("Temurin")) && featureVersion >= 25) {
+      System.out.println("Skipping testAddModulesJDK_gh145: ECJ on " + vendor + " " + Runtime.version() +
                          " rejects internal JDK modules with 'invalid module name: jdk.charsets'");
       return;
     }

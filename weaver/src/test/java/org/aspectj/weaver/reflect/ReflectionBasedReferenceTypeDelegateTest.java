@@ -77,7 +77,8 @@ public abstract class ReflectionBasedReferenceTypeDelegateTest extends TestCase 
 	}
 
 	public void testGetAnnotationTypes() {
-		assertEquals("no entries", 0, objectType.getAnnotationTypes().length);
+		assertEquals("same entries as reflection", Object.class.getDeclaredAnnotations().length,
+				objectType.getAnnotationTypes().length);
 	}
 
 	public void testGetTypeVariables() {
