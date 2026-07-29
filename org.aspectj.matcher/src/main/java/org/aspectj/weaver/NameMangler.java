@@ -328,13 +328,13 @@ public class NameMangler {
 
 	public static String aroundShadowMethodName(Member shadowSig, String suffixTag) {
 		StringBuilder ret = new StringBuilder();
-		ret.append('_').append(getExtractableName(shadowSig)).append("_aroundBody").append(suffixTag);
+		ret.append(getExtractableName(shadowSig)).append("_aroundBody").append(suffixTag);
 		return ret.toString();
 	}
 
 	public static String aroundAdviceMethodName(Member shadowSig, String suffixTag) {
 		StringBuilder ret = new StringBuilder();
-		ret.append('_').append(getExtractableName(shadowSig)).append("_aroundBody").append(suffixTag).append("$advice");
+		ret.append(getExtractableName(shadowSig)).append("_aroundBody").append(suffixTag).append("$advice");
 		return ret.toString();
 	}
 
@@ -346,7 +346,12 @@ public class NameMangler {
 		} else if (kind == Member.STATIC_INITIALIZATION) {
 			return "clinit$";
 		} else {
-			return name;
+            /**
+             * SLEE workaround. Naming methods 'sbb' commonly triggers unexpected
+             * functionality in the SLEE so we prepend it with a '_'. We don't do it
+             * for other methods simply cause it causes unit test failures.
+             */
+            return name.startsWith("sbb") ? String.format("_%s", name) : name;
 		}
 	}
 
